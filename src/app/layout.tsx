@@ -1,30 +1,33 @@
 
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import AOSInit from '@/components/AOSInit';
-import './globals.css';
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+
+import AosInitializer from "@/components/providers/AosInitializer";
+import InitialPageLoader from "@/components/providers/InitialPageLoader";
+
+import "../styles/globals.css";
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: 'Kumar Aryan | Full-Stack & Mobile Developer',
-  description: 'Portfolio of Kumar Aryan - Full-Stack & Mobile Developer (React, Next.js, Angular, React Native, Flutter, Node.js)',
+  title: "Kumar Aryan | Full-Stack & Mobile Developer",
+  description:
+    "Portfolio of Kumar Aryan - Full-Stack & Mobile Developer (React, Next.js, Angular, React Native, Flutter, Node.js)",
 };
 
-export const viewport = {
-  width: 'device-width',
+export const viewport: Viewport = {
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
 };
-
 
 export default function RootLayout({
   children,
@@ -36,7 +39,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AOSInit />
+        <InitialPageLoader />
+        <AosInitializer />
         {children}
       </body>
     </html>

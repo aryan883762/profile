@@ -1,0 +1,189 @@
+import {
+  FaAndroid,
+  FaAngular,
+  FaApple,
+  FaAws,
+  FaBrain,
+  FaCode,
+  FaCss3Alt,
+  FaDatabase,
+  FaDocker,
+  FaGitAlt,
+  FaGithub,
+  FaGlobe,
+  FaHtml5,
+  FaJsSquare,
+  FaMobileAlt,
+  FaNodeJs,
+  FaReact,
+  FaServer,
+  FaVuejs,
+} from "react-icons/fa";
+
+import {
+  SiBitbucket,
+  SiBootstrap,
+  SiExpress,
+  SiExpo,
+  SiFirebase,
+  SiFlutter,
+  SiGithubactions,
+  SiGo,
+  SiGraphql,
+  SiIonic,
+  SiMongodb,
+  SiMui,
+  SiMysql,
+  SiNetlify,
+  SiNextdotjs,
+  SiOpenai,
+  SiPostgresql,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+} from "react-icons/si";
+
+import type { SkillGroup } from "@/types/skill";
+
+export const skillGroups: SkillGroup[] = [
+  {
+    id: "frontend",
+    title: "Frontend Frameworks",
+    shortTitle: "Frontend",
+    description:
+      "Building scalable, responsive, and reusable frontend applications with modern component architecture.",
+    icon: FaReact,
+    gradient: "from-cyan-500 via-blue-500 to-violet-600",
+    accentBackground: "bg-cyan-100",
+    items: [
+      { name: "ReactJS", icon: FaReact },
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "Angular", icon: FaAngular },
+      { name: "Vue.js", icon: FaVuejs },
+    ],
+  },
+  {
+    id: "web",
+    title: "Web Technologies",
+    shortTitle: "Web",
+    description:
+      "Creating polished and accessible interfaces with modern web standards, styling systems, and strongly typed development.",
+    icon: FaCode,
+    gradient: "from-pink-500 via-purple-500 to-blue-500",
+    accentBackground: "bg-pink-100",
+    items: [
+      { name: "HTML5", icon: FaHtml5 },
+      { name: "CSS3", icon: FaCss3Alt },
+      { name: "JavaScript", icon: FaJsSquare },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: SiBootstrap },
+      { name: "Material UI", icon: SiMui },
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend & APIs",
+    shortTitle: "Backend",
+    description:
+      "Developing secure backend services, integrations, and APIs that support scalable web and mobile products.",
+    icon: FaServer,
+    gradient: "from-emerald-500 via-cyan-500 to-blue-500",
+    accentBackground: "bg-emerald-100",
+    items: [
+      { name: "Node.js", icon: FaNodeJs },
+      { name: "Express.js", icon: SiExpress },
+      { name: "REST APIs", icon: FaServer },
+      { name: "GraphQL", icon: SiGraphql },
+      { name: "Go", icon: SiGo },
+    ],
+  },
+  {
+    id: "databases",
+    title: "Databases",
+    shortTitle: "Data",
+    description:
+      "Designing and integrating relational and document databases for reliable application data and real-time workflows.",
+    icon: FaDatabase,
+    gradient: "from-orange-500 via-amber-500 to-yellow-400",
+    accentBackground: "bg-orange-100",
+    items: [
+      { name: "MySQL", icon: SiMysql },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "Firestore", icon: SiFirebase },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile Development",
+    shortTitle: "Mobile",
+    description:
+      "Building cross-platform mobile applications for iOS and Android with shared architecture and native integrations.",
+    icon: FaMobileAlt,
+    gradient: "from-purple-600 via-pink-500 to-rose-500",
+    accentBackground: "bg-purple-100",
+    items: [
+      { name: "React Native", icon: FaReact },
+      { name: "Flutter", icon: SiFlutter },
+      { name: "Expo", icon: SiExpo },
+      { name: "Ionic", icon: SiIonic },
+      { name: "Android Studio", icon: FaAndroid },
+      { name: "Xcode", icon: FaApple },
+    ],
+  },
+  {
+    id: "devops",
+    title: "Cloud & DevOps",
+    shortTitle: "DevOps",
+    description:
+      "Shipping applications with cloud services, containers, source control, and automated deployment pipelines.",
+    icon: FaDocker,
+    gradient: "from-blue-600 via-indigo-500 to-purple-600",
+    accentBackground: "bg-blue-100",
+    items: [
+      { name: "AWS", icon: FaAws },
+      { name: "Docker", icon: FaDocker },
+      { name: "Vercel", icon: SiVercel },
+      { name: "Netlify", icon: SiNetlify },
+      { name: "Git", icon: FaGitAlt },
+      { name: "GitHub", icon: FaGithub },
+      { name: "Bitbucket", icon: SiBitbucket },
+      { name: "GitHub Actions", icon: SiGithubactions },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI-Assisted Development",
+    shortTitle: "AI",
+    description:
+      "Using AI tools to accelerate implementation, explore solutions, review code, and reduce repetitive engineering work.",
+    icon: FaBrain,
+    gradient: "from-fuchsia-500 via-purple-500 to-cyan-500",
+    accentBackground: "bg-fuchsia-100",
+    items: [
+      { name: "Cursor", icon: SiOpenai },
+      { name: "GitHub Copilot", icon: FaGithub },
+      { name: "ChatGPT", icon: SiOpenai },
+      { name: "Claude", icon: FaBrain },
+      { name: "OpenAI API", icon: SiOpenai },
+    ],
+  },
+];
+
+const allSkillGroup: SkillGroup = {
+  id: "all",
+  title: "Complete Technology Stack",
+  shortTitle: "All",
+  description:
+    "A complete view of the frontend, backend, mobile, database, cloud, DevOps, and AI tools I use to deliver modern digital products.",
+  icon: FaGlobe,
+  gradient: "from-pink-500 via-purple-500 to-cyan-500",
+  accentBackground: "bg-purple-100",
+  items: [],
+};
+
+export const skillNavigationGroups: SkillGroup[] = [
+  allSkillGroup,
+  ...skillGroups,
+];

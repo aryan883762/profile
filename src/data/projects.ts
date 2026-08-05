@@ -1,4 +1,3 @@
-import type { IconType } from "react-icons";
 import { FaCode, FaNodeJs, FaReact } from "react-icons/fa";
 import {
     SiAngular,
@@ -14,26 +13,7 @@ import {
     SiXstate,
 } from "react-icons/si";
 
-export type Project = {
-    title: string;
-    shortTitle: string;
-    subtitle: string;
-    role: string;
-    description: string;
-    image: string;
-    imagePosition?: string;
-    link: string;
-    gradient: string;
-    tech: {
-        name: string;
-        icon: IconType;
-    }[];
-    contributions: string[];
-    overview?: string;
-    challenges?: string[];
-    solutions?: string[];
-    results?: string[];
-};
+import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
     {

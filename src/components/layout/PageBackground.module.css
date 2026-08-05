@@ -1,0 +1,35 @@
+@keyframes fall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.fall {
+  animation: fall 8s linear infinite;
+}
+
+.fallSlow {
+  animation: fall 12s linear infinite;
+}
+
+.fallFast {
+  animation: fall 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fall,
+  .fallSlow,
+  .fallFast {
+    animation: none !important;
+  }
+}

@@ -22,7 +22,6 @@ const Hero = () => {
           items-center gap-8 px-5 pb-10 pt-8
           sm:px-6 sm:pb-14 sm:pt-12
           md:px-12
-          lg:min-h-[calc(100vh-64px)]
           lg:grid-cols-[0.95fr_1.05fr]
           lg:gap-14 lg:px-16 lg:py-16
         "
@@ -39,16 +38,20 @@ const Hero = () => {
                         Hi, I&apos;m Kumar Aryan
                     </p>
 
-                    <h1 className="text-[32px] font-extrabold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                        Senior Full-Stack,
-                        Mobile Developer
+                    <h1 className="text-[32px] font-extrabold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-[40px] xl:text-5xl">
+                        <span className="lg:block">Senior Full-Stack,</span>{" "}
+                        <span className="lg:block lg:whitespace-nowrap">
+                            Mobile &amp; AI Developer
+                        </span>
                     </h1>
 
                     <p className="mt-5 max-w-xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-                        7+ years building scalable web and mobile applications with React,
-                        Next.js, Angular, Vue.js, React Native, Flutter, and Node.js for
-                        startups, agencies, and product teams across SaaS platforms,
-                        dashboards, customer portals, and e-commerce solutions.
+                        7+ years building scalable web, mobile, and AI-powered
+                        applications with React, Next.js, Angular, Vue.js, React Native,
+                        Flutter, Node.js, and modern AI integrations. I help startups,
+                        agencies, and product teams deliver SaaS platforms, intelligent
+                        automation, dashboards, customer portals, and e-commerce
+                        solutions.
                     </p>
 
                     {/* Actions */}

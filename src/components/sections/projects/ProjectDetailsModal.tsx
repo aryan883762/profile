@@ -1,10 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useRef } from "react";
+import clsx from "clsx";
 import { FaCheckCircle, FaExternalLinkAlt, FaRocket, FaTimes } from "react-icons/fa";
 
-import type { Project } from "../data/projects";
+import BrowserWindowDots from "./BrowserWindowDots";
+import { useDialogAccessibility } from "@/hooks/useDialogAccessibility";
+import type { Project } from "@/types/project";
+import styles from "./Projects.module.css";
 
 type ProjectDetailListProps = {
     title: string;
@@ -32,7 +36,10 @@ const ProjectDetailList = ({
                         className="flex items-start gap-3 text-sm leading-6 text-slate-600"
                     >
                         <span
-                            className={`mt-2 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r ${gradient}`}
+                            className={clsx(
+                                "mt-2 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r",
+                                gradient,
+                            )}
                         />
                         <span>{item}</span>
                     </li>
@@ -48,25 +55,13 @@ type ProjectModalProps = {
 };
 
 const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
-    useEffect(() => {
-        if (!project) return;
+    const dialogRef = useRef<HTMLDivElement>(null);
 
-        const previousOverflow = document.body.style.overflow;
-
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                onClose();
-            }
-        };
-
-        document.body.style.overflow = "hidden";
-        window.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.body.style.overflow = previousOverflow;
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [project, onClose]);
+    useDialogAccessibility({
+        dialogRef,
+        isOpen: project !== null,
+        onClose,
+    });
 
     if (!project) return null;
 
@@ -79,7 +74,12 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
             onMouseDown={onClose}
         >
             <div
-                className="project-gallery-slide relative max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[1.75rem] border border-white/20 bg-white shadow-2xl shadow-purple-950/30 sm:rounded-[2rem]"
+                ref={dialogRef}
+                tabIndex={-1}
+                className={clsx(
+                    styles.gallerySlide,
+                    "relative max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[1.75rem] border border-white/20 bg-white shadow-2xl shadow-purple-950/30 focus:outline-none sm:rounded-[2rem]",
+                )}
                 onMouseDown={(event) => event.stopPropagation()}
             >
                 <button
@@ -92,23 +92,24 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                 </button>
 
                 <div
-                    className={`relative h-[240px] overflow-hidden bg-gradient-to-br ${project.gradient} sm:h-[360px]`}
+                    className={clsx(
+                        "relative h-[240px] overflow-hidden bg-gradient-to-br sm:h-[360px]",
+                        project.gradient,
+                    )}
                 >
                     <Image
                         src={project.image}
                         alt={`${project.title} project screenshot`}
                         fill
                         sizes="(max-width: 1024px) 100vw, 1024px"
-                        className={`object-cover ${project.imagePosition ?? "object-top"}`}
+                        className={clsx("object-cover", project.imagePosition ?? "object-top")}
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-950/20 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-slate-950/10" />
 
                     <div className="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/30 px-3 py-2 backdrop-blur-md sm:left-6">
-                        <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                        <BrowserWindowDots />
                     </div>
 
                     <div className="absolute bottom-5 left-5 right-5 z-20 sm:bottom-7 sm:left-7 sm:right-20">
@@ -129,7 +130,12 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                     </div>
 
                     <div className="absolute inset-x-0 bottom-0 z-30 h-1 bg-white/10">
-                        <div className={`h-full bg-gradient-to-r ${project.gradient}`} />
+                        <div
+                            className={clsx(
+                                "h-full bg-gradient-to-r",
+                                project.gradient,
+                            )}
+                        />
                     </div>
                 </div>
 
@@ -194,7 +200,10 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                     <div className="mt-7 flex flex-col gap-3 rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 via-white to-cyan-50 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
                         <div className="flex items-start gap-3">
                             <span
-                                className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-md ${project.gradient}`}
+                                className={clsx(
+                                    "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-md",
+                                    project.gradient,
+                                )}
                             >
                                 <FaCheckCircle />
                             </span>
@@ -212,7 +221,10 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                         <a
                             href={project.link}
                             onClick={onClose}
-                            className={`inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gradient-to-r ${project.gradient} px-5 py-2.5 text-xs font-semibold text-white shadow-lg transition hover:-translate-y-0.5`}
+                            className={clsx(
+                                "inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gradient-to-r px-5 py-2.5 text-xs font-semibold text-white shadow-lg transition hover:-translate-y-0.5",
+                                project.gradient,
+                            )}
                         >
                             Contact Me
                             <FaExternalLinkAlt className="text-[9px]" />

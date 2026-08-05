@@ -1,0 +1,226 @@
+/* =========================================================
+   SKILLS SECTION
+   ========================================================= */
+
+.sectionGrid {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px,
+      transparent 1px),
+    linear-gradient(90deg,
+      rgba(139, 92, 246, 0.05) 1px,
+      transparent 1px);
+  background-size: 42px 42px;
+}
+
+/* Slide transitions */
+
+@keyframes skillsSlideNext {
+  from {
+    transform: translateX(34px) scale(0.985);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes skillsSlidePrevious {
+  from {
+    transform: translateX(-34px) scale(0.985);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.slideNext {
+  animation: skillsSlideNext 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.slidePrevious {
+  animation: skillsSlidePrevious 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Rotating orbit circles */
+
+@keyframes skillsOrbitClockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes skillsOrbitCounterClockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.orbitOuter {
+  animation: skillsOrbitClockwise 28s linear infinite;
+  will-change: transform;
+}
+
+.orbitInner {
+  animation: skillsOrbitCounterClockwise 21s linear infinite;
+  will-change: transform;
+}
+
+/* Center icon */
+
+@keyframes skillsCenterIcon {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(2deg);
+  }
+}
+
+.centerIcon {
+  animation: skillsCenterIcon 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Floating skill cards */
+
+@keyframes skillsFloatingNode {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -9px;
+  }
+}
+
+.floatingNode {
+  animation: skillsFloatingNode 5.5s ease-in-out infinite;
+  will-change: translate;
+}
+
+/* Moving connector dots */
+
+@keyframes skillsConnectorMove {
+  from {
+    stroke-dashoffset: 120;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.connectorLine {
+  animation: skillsConnectorMove 6s linear infinite;
+}
+
+.connectorDelay {
+  animation-delay: -3s;
+}
+
+/* Skill-item entrance */
+
+@keyframes skillsItemEntrance {
+  from {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.itemCard {
+  animation: skillsItemEntrance 450ms ease-out both;
+}
+
+/* Carousel progress */
+
+@keyframes skillsCarouselProgress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.carouselProgress {
+  animation: skillsCarouselProgress 5s linear forwards;
+}
+
+/* Main card */
+
+.featureCard {
+  transition:
+    box-shadow 500ms ease,
+    border-color 500ms ease;
+}
+
+.featureCard:hover {
+  box-shadow:
+    0 35px 80px rgba(139, 92, 246, 0.16),
+    0 20px 45px rgba(6, 182, 212, 0.09);
+}
+
+/* Navigation-button glow */
+
+.navigationButton::before {
+  position: absolute;
+  inset: -6px;
+  z-index: -1;
+  border-radius: 9999px;
+  background: linear-gradient(135deg,
+      rgba(236, 72, 153, 0.3),
+      rgba(139, 92, 246, 0.3),
+      rgba(6, 182, 212, 0.3));
+  content: "";
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 300ms ease;
+}
+
+.navigationButton:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .slideNext,
+  .slidePrevious,
+  .orbitOuter,
+  .orbitInner,
+  .centerIcon,
+  .floatingNode,
+  .connectorLine,
+  .itemCard,
+  .carouselProgress {
+    animation: none !important;
+  }
+
+  .featureCard {
+    transition: none;
+  }
+}
+

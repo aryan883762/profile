@@ -1,6 +1,5 @@
-import { experiences } from "@/data/experiences";
-
 import ExperienceCard from "./ExperienceCard";
+import { experiences } from "@/data/experiences";
 
 const ExperienceCloud = () => {
   return (

@@ -1,0 +1,174 @@
+/* Developer DNA animations */
+
+
+/* Developer DNA rotating orbits */
+@keyframes developerDnaOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes developerDnaOrbitReverse {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.root :global(.developer-dna-orbit) {
+  animation: developerDnaOrbit 30s linear infinite;
+}
+
+.root :global(.developer-dna-orbit-reverse) {
+  animation: developerDnaOrbitReverse 23s linear infinite;
+}
+
+/* Central editor movement */
+@keyframes developerDnaMainCard {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+.root :global(.developer-dna-main-card) {
+  animation: developerDnaMainCard 6s ease-in-out infinite;
+}
+
+/* Floating cards */
+@keyframes developerDnaFloat {
+
+  0%,
+  100% {
+    transform: translateY(-50%);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 12px));
+  }
+}
+
+@keyframes developerDnaFloatSlow {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -11px;
+  }
+}
+
+@keyframes developerDnaFloatMedium {
+
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 12px;
+  }
+}
+
+.root :global(.developer-dna-float) {
+  animation: developerDnaFloat 5s ease-in-out infinite;
+}
+
+.root :global(.developer-dna-float-slow) {
+  animation: developerDnaFloatSlow 6.5s ease-in-out infinite;
+}
+
+.root :global(.developer-dna-float-medium) {
+  animation: developerDnaFloatMedium 5.2s ease-in-out infinite;
+}
+
+/* Animated connector paths */
+@keyframes developerDnaPath {
+  from {
+    stroke-dashoffset: 120;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.root :global(.developer-dna-path) {
+  animation: developerDnaPath 6s linear infinite;
+  opacity: 0.55;
+}
+
+.root :global(.developer-dna-path-delay) {
+  animation-delay: -3s;
+}
+
+/* React logo */
+@keyframes developerTechSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.root :global(.developer-tech-spin) {
+  animation: developerTechSpin 12s linear infinite;
+}
+
+/* Floating particles */
+@keyframes developerDnaParticle {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.15);
+    opacity: 1;
+  }
+}
+
+.root :global(.developer-dna-particle) {
+  animation: developerDnaParticle 4s ease-in-out infinite;
+}
+
+.root :global(.developer-dna-particle-delay) {
+  animation: developerDnaParticle 5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  .root :global(.developer-dna-orbit),
+  .root :global(.developer-dna-orbit-reverse),
+  .root :global(.developer-dna-main-card),
+  .root :global(.developer-dna-float),
+  .root :global(.developer-dna-float-slow),
+  .root :global(.developer-dna-float-medium),
+  .root :global(.developer-dna-path),
+  .root :global(.developer-tech-spin),
+  .root :global(.developer-dna-particle),
+  .root :global(.developer-dna-particle-delay) {
+    animation: none;
+  }
+}
+

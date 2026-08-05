@@ -1,4 +1,4 @@
-export type Experience = {
+export interface Experience {
     company: string;
     role: string;
     period: string;
@@ -6,4 +6,4 @@ export type Experience = {
     initials: string;
     gradient: string;
     current?: boolean;
-};
+}
