@@ -44,7 +44,7 @@ const SkillsSection = () => {
       id="skills"
       className={clsx(
         performanceStyles.deferredSection,
-        "relative overflow-hidden bg-gradient-to-br from-white via-purple-50/70 to-cyan-50",
+        "relative scroll-mt-[72px] overflow-hidden bg-gradient-to-br from-white via-purple-50/70 to-cyan-50",
       )}
     >
       <div className="absolute -left-28 top-20 h-72 w-72 rounded-full bg-pink-300/20 blur-3xl" />

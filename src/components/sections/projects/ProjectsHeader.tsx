@@ -14,23 +14,23 @@ interface ProjectsHeaderProps {
 
 const ProjectsHeader = ({ onNext, onPrevious }: ProjectsHeaderProps) => (
   <div
-    className="mb-7 flex flex-col justify-between gap-5 md:flex-row md:items-end lg:mb-9"
+    className="mb-6 flex flex-col justify-between gap-5 sm:mb-7 md:flex-row md:items-end lg:mb-9"
     data-aos="fade-up"
   >
     <div className="max-w-3xl">
-      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white/75 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-purple-600 shadow-sm backdrop-blur-md sm:text-xs">
+      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white/75 px-3.5 py-2 text-[9px] font-semibold uppercase tracking-[0.18em] text-purple-600 shadow-sm backdrop-blur-md sm:px-4 sm:text-xs sm:tracking-[0.2em]">
         <FaRocket />
         Selected Case Studies
       </div>
 
-      <h2 className="text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl md:text-5xl">
+      <h2 className="text-[1.75rem] font-extrabold leading-[1.15] text-slate-900 sm:text-4xl md:text-5xl">
         Products I&apos;ve Helped{" "}
         <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
           Build
         </span>
       </h2>
 
-      <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 md:text-base">
+      <p className="mt-3 max-w-2xl text-[13px] leading-[1.375rem] text-slate-600 sm:text-sm sm:leading-6 md:text-base">
         Selected web, mobile, design-system, and enterprise products—from
         architecture and implementation to integration and delivery.
       </p>

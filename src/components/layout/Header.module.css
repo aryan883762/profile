@@ -1,0 +1,188 @@
+@keyframes techDrop {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--start-x), -32px, 0) scale(0.58);
+  }
+
+  14% {
+    opacity: 0.72;
+  }
+
+  48% {
+    opacity: 0.76;
+    transform: translate3d(var(--mid-x), var(--rain-mid-y), 0) scale(0.94);
+  }
+
+  76% {
+    opacity: 0.68;
+    transform: translate3d(
+        var(--curve-x),
+        var(--rain-approach-y),
+        0
+      )
+      scale(0.72);
+  }
+
+  92% {
+    opacity: 0.48;
+    transform: translate3d(0, var(--rain-pre-absorb-y), 0) scale(0.3);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0, var(--rain-absorb-y), 0) scale(0);
+  }
+}
+
+@keyframes absorbPulse {
+  0%,
+  100% {
+    border-color: rgb(192 132 252 / 0.32);
+    box-shadow: 0 0 0 0 rgb(168 85 247 / 0);
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+
+  42% {
+    border-color: rgb(236 72 153 / 0.68);
+    box-shadow:
+      0 0 0 4px rgb(236 72 153 / 0.06),
+      0 0 13px rgb(168 85 247 / 0.22);
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+
+  66% {
+    border-color: rgb(34 211 238 / 0.62);
+    box-shadow:
+      0 0 0 7px rgb(34 211 238 / 0),
+      0 0 9px rgb(34 211 238 / 0.16);
+    opacity: 0.72;
+    transform: scale(0.98);
+  }
+}
+
+.header {
+  --logo-center: 56px;
+  --rain-absorb-y: 33px;
+  --rain-approach-y: 18px;
+  --rain-mid-y: 0px;
+  --rain-pre-absorb-y: 29px;
+}
+
+.brand {
+  isolation: isolate;
+}
+
+.logoGlow {
+  animation: absorbPulse 2.4s ease-in-out infinite;
+  transition: opacity 300ms ease;
+}
+
+.absorbRing {
+  animation: absorbPulse 2.4s ease-in-out infinite;
+}
+
+.techRain {
+  height: 78px;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+  width: min(210px, 100vw);
+}
+
+.fallingIcon {
+  --curve-x: 0px;
+  --fall-delay: 0s;
+  --fall-duration: 6s;
+  --mid-x: 0px;
+  --start-x: 0px;
+
+  align-items: center;
+  animation: techDrop var(--fall-duration) cubic-bezier(0.36, 0, 0.22, 1)
+    var(--fall-delay) infinite;
+  background: rgb(255 255 255 / 0.9);
+  border: 1px solid rgb(255 255 255 / 0.96);
+  border-radius: 9999px;
+  box-shadow:
+    0 3px 10px rgb(100 116 139 / 0.2),
+    0 0 0 1px rgb(226 232 240 / 0.5);
+  display: flex;
+  font-size: 8px;
+  height: 17px;
+  justify-content: center;
+  left: calc(var(--logo-center) - 8.5px);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 17px;
+  will-change: opacity, transform;
+}
+
+.fallingIcon::before {
+  background: linear-gradient(to bottom, transparent, currentColor);
+  content: "";
+  height: 10px;
+  left: 50%;
+  opacity: 0.18;
+  position: absolute;
+  top: -10px;
+  transform: translateX(-50%);
+  width: 1px;
+}
+
+.fallingIcon:nth-child(n + 7) {
+  display: none;
+}
+
+.brand:hover .logoGlow {
+  opacity: 0.95;
+}
+
+@media (min-width: 768px) {
+  .header {
+    --logo-center: 112px;
+    --rain-absorb-y: 56px;
+    --rain-approach-y: 36px;
+    --rain-mid-y: 8px;
+    --rain-pre-absorb-y: 52px;
+  }
+
+  .techRain {
+    height: 112px;
+    width: 520px;
+  }
+
+  .fallingIcon {
+    font-size: 11px;
+    height: 22px;
+    left: calc(var(--logo-center) - 11px);
+    width: 22px;
+  }
+
+  .fallingIcon:nth-child(n + 7) {
+    display: flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    --logo-center: calc((100vw - 1280px) / 2 + 112px);
+  }
+
+  .techRain {
+    width: calc((100vw - 1280px) / 2 + 520px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fallingIcon,
+  .logoGlow,
+  .absorbRing {
+    animation: none;
+  }
+
+  .fallingIcon {
+    display: none;
+  }
+}

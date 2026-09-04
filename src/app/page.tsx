@@ -1,9 +1,11 @@
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import PageBackground from "@/components/layout/PageBackground";
+import ContactSection from "@/components/sections/contact/ContactSection";
 import ProjectsSection from "@/components/sections/projects/ProjectsSection";
 import SkillsSection from "@/components/sections/skills/SkillsSection";
 import DeveloperDNA from "@/components/sections/developer-dna/DeveloperDNA";
+import ExperienceSection from "@/components/sections/experience/ExperienceSection";
 import Hero from "@/components/sections/hero/Hero";
 
 export default function Home() {
@@ -15,8 +17,10 @@ export default function Home() {
         <Header />
         <Hero />
         <DeveloperDNA />
-        <ProjectsSection />
         <SkillsSection />
+        <ProjectsSection />
+        <ExperienceSection />
+        <ContactSection />
       </main>
 
       <Footer />

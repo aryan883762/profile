@@ -3,27 +3,36 @@ import { SiUpwork } from "react-icons/si";
 
 import type { NavigationLink, SocialLink } from "@/types/navigation";
 
+export const profileLinks = {
+  email: "mailto:aryanlpu@gmail.com",
+  github: "https://github.com/kumararyan",
+  linkedIn: "https://www.linkedin.com/in/kumar-aryan-18186bb8/",
+  upwork: "https://www.upwork.com/freelancers/~015ed81f3311203b69",
+} as const;
+
 export const navigationLinks = [
   { href: "#home", label: "Home" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#experience", label: "Experience" },
+  { href: "#contact", label: "Contact" },
 ] satisfies readonly NavigationLink[];
 
 const githubLink: SocialLink = {
-  href: "https://github.com/kumararyan",
+  href: profileLinks.github,
   icon: FaGithub,
   label: "GitHub",
 };
 
 const linkedInLink: SocialLink = {
-  href: "https://www.linkedin.com/in/kumar-aryan/",
+  href: profileLinks.linkedIn,
   icon: FaLinkedin,
   label: "LinkedIn",
 };
 
 const upworkLink: SocialLink = {
-  href: "https://www.upwork.com/freelancers/~015ed81f3311203b69",
+  href: profileLinks.upwork,
   icon: SiUpwork,
   label: "Upwork",
 };

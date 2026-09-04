@@ -14,6 +14,33 @@ import {
   SiTypescript,
 } from "react-icons/si";
 
+const deliveryStages = [
+  {
+    step: "01",
+    title: "Discover",
+    detail: "Goals · users · constraints",
+    accent: "text-pink-300",
+  },
+  {
+    step: "02",
+    title: "Architect",
+    detail: "Systems · data · interfaces",
+    accent: "text-purple-300",
+  },
+  {
+    step: "03",
+    title: "Build",
+    detail: "Web · mobile · AI",
+    accent: "text-cyan-300",
+  },
+  {
+    step: "04",
+    title: "Ship & Improve",
+    detail: "CI/CD · metrics · iteration",
+    accent: "text-emerald-300",
+  },
+] as const;
+
 const DeveloperDNAVisual = () => {
   return (
     <div
@@ -99,51 +126,43 @@ const DeveloperDNAVisual = () => {
 
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
             <FaCode />
-            developer-dna.ts
+            delivery-system.ts
           </div>
         </div>
 
-        {/* Code content */}
-        <div className="bg-slate-950 px-5 py-6 font-mono text-xs leading-7 text-slate-300">
-          <p>
-            <span className="text-pink-400">const</span>{" "}
-            <span className="text-cyan-300">developer</span>{" "}
-            <span className="text-white">=</span>{" "}
-            <span className="text-yellow-300">{"{"}</span>
-          </p>
+        {/* Delivery pipeline */}
+        <div className="bg-slate-950 px-5 py-5">
+          <div className="mb-3 flex items-center justify-between">
+            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              Product delivery loop
+            </p>
 
-          <p className="pl-5">
-            <span className="text-purple-300">mindset:</span>{" "}
-            <span className="text-green-300">&quot;problem-solver&quot;</span>,
-          </p>
+            <span className="flex items-center gap-1.5 text-[9px] font-medium text-emerald-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              Active
+            </span>
+          </div>
 
-          <p className="pl-5">
-            <span className="text-purple-300">platforms:</span>{" "}
-            <span className="text-blue-300">[&quot;web&quot;, &quot;mobile&quot;]</span>,
-          </p>
+          <div className="space-y-2">
+            {deliveryStages.map(({ step, title, detail, accent }) => (
+              <div
+                key={step}
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 transition-colors hover:bg-white/[0.07]"
+              >
+                <span
+                  className={`font-mono text-[10px] font-bold ${accent}`}
+                >
+                  {step}
+                </span>
 
-          <p className="pl-5">
-            <span className="text-purple-300">ownership:</span>{" "}
-            <span className="text-orange-300">true</span>,
-          </p>
+                <div className="min-w-0 flex-1">
+                  <p className="text-[11px] font-semibold text-white">{title}</p>
+                  <p className="mt-0.5 text-[9px] text-slate-400">{detail}</p>
+                </div>
 
-          <p className="pl-5">
-            <span className="text-purple-300">workflow:</span>{" "}
-            <span className="text-green-300">&quot;AI-augmented&quot;</span>,
-          </p>
-
-          <p className="pl-5">
-            <span className="text-purple-300">collaboration:</span>{" "}
-            <span className="text-orange-300">100</span>,
-          </p>
-
-          <p>
-            <span className="text-yellow-300">{"}"}</span>;
-          </p>
-
-          <div className="mt-5 flex items-center gap-2 rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-3 py-2 text-emerald-300">
-            <FaCheckCircle />
-            <span>Ready to build something meaningful</span>
+                <FaCheckCircle className="text-[10px] text-emerald-400/80" />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -165,8 +184,8 @@ const DeveloperDNAVisual = () => {
           </div>
 
           <div>
-            <p className="text-sm font-bold text-slate-900">Think</p>
-            <p className="text-[10px] text-slate-500">Solve clearly</p>
+            <p className="text-sm font-bold text-slate-900">Architecture</p>
+            <p className="text-[10px] text-slate-500">Built for scale</p>
           </div>
         </div>
       </div>
@@ -179,8 +198,8 @@ const DeveloperDNAVisual = () => {
           </div>
 
           <div>
-            <p className="text-sm font-bold text-slate-900">Build</p>
-            <p className="text-[10px] text-slate-500">Own delivery</p>
+            <p className="text-sm font-bold text-slate-900">Delivery</p>
+            <p className="text-[10px] text-slate-500">Idea to production</p>
           </div>
         </div>
       </div>
@@ -193,8 +212,8 @@ const DeveloperDNAVisual = () => {
           </div>
 
           <div>
-            <p className="text-sm font-bold text-slate-900">Cross-Platform</p>
-            <p className="text-[10px] text-slate-500">Web + mobile</p>
+            <p className="text-sm font-bold text-slate-900">Web + Native</p>
+            <p className="text-[10px] text-slate-500">Shared foundations</p>
           </div>
         </div>
       </div>
@@ -207,8 +226,8 @@ const DeveloperDNAVisual = () => {
           </div>
 
           <div>
-            <p className="text-sm font-bold text-slate-900">AI Workflow</p>
-            <p className="text-[10px] text-slate-500">Work smarter</p>
+            <p className="text-sm font-bold text-slate-900">AI + Cloud</p>
+            <p className="text-[10px] text-slate-500">Applied automation</p>
           </div>
         </div>
       </div>
@@ -229,4 +248,3 @@ const DeveloperDNAVisual = () => {
 };
 
 export default DeveloperDNAVisual;
-

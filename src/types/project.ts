@@ -11,7 +11,8 @@ export interface Project {
   subtitle: string;
   role: string;
   description: string;
-  image: string;
+  image?: string;
+  images?: string[];
   imagePosition?: "object-center" | "object-top";
   link: string;
   gradient: string;

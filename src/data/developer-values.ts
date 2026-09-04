@@ -17,37 +17,37 @@ interface DeveloperValue {
 export const developerValues = [
   {
     icon: FaBrain,
-    iconClassName: "text-3xl text-purple-500",
-    title: "Problem Solving",
+    iconClassName: "text-xl text-purple-500",
+    title: "Product-Focused Problem Solving",
     description:
-      "I find practical solutions that work — from building products from scratch to fixing complex performance issues.",
+      "Turn ambiguous requirements into pragmatic, maintainable solutions tied to user and business outcomes.",
   },
   {
     icon: FaRocket,
-    iconClassName: "text-3xl text-pink-500",
-    title: "Full Lifecycle Ownership",
+    iconClassName: "text-xl text-pink-500",
+    title: "End-to-End Ownership",
     description:
-      "From requirements and architecture to development, code reviews, deployment, and production support.",
+      "Own architecture, implementation, reviews, automated delivery, observability, and production support.",
   },
   {
     icon: FaPuzzlePiece,
-    iconClassName: "text-3xl text-blue-500",
-    title: "Cross-Platform Development",
+    iconClassName: "text-xl text-blue-500",
+    title: "Cross-Platform Systems",
     description:
-      "Comfortable across web and mobile using React, Next.js, Angular, React Native, and Flutter.",
+      "Build shared foundations across web and mobile while preserving platform-specific quality and experience.",
   },
   {
     icon: FaBullseye,
-    iconClassName: "text-3xl text-emerald-500",
-    title: "AI-Augmented Workflow",
+    iconClassName: "text-xl text-emerald-500",
+    title: "AI-Accelerated Engineering",
     description:
-      "Using Cursor, Copilot, ChatGPT, and Claude to accelerate development, code reviews, and repetitive work.",
+      "Use AI for exploration, implementation, and review while keeping technical judgment and quality human-led.",
   },
   {
     icon: FaChalkboardTeacher,
-    iconClassName: "text-3xl text-orange-500",
-    title: "Collaboration",
+    iconClassName: "text-xl text-orange-500",
+    title: "Clear Collaboration",
     description:
-      "Working closely with developers, founders, designers, recruiters, and product teams to deliver strong products.",
+      "Align founders, designers, product managers, and engineers through clear tradeoffs and dependable delivery.",
   },
 ] satisfies readonly DeveloperValue[];

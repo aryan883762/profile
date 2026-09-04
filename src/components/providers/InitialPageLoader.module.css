@@ -1,0 +1,729 @@
+.loader {
+  align-items: center;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(245 243 255 / 0.96), transparent 32%),
+    linear-gradient(135deg, #ffffff 0%, #faf5ff 48%, #ecfeff 100%);
+  contain: strict;
+  display: flex;
+  height: 100dvh;
+  inset: 0;
+  isolation: isolate;
+  justify-content: center;
+  overflow: hidden;
+  overscroll-behavior: none;
+  position: fixed;
+  width: 100%;
+  z-index: 200;
+}
+
+.grid {
+  background-image:
+    linear-gradient(rgb(139 92 246 / 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(139 92 246 / 0.055) 1px, transparent 1px);
+  background-size: 46px 46px;
+  inset: 0;
+  mask-image: radial-gradient(circle at center, black, transparent 76%);
+  opacity: 0.75;
+  position: absolute;
+}
+
+.ambientGlow {
+  animation: ambientBreathe 1.6s ease-in-out infinite alternate;
+  background: conic-gradient(
+    from 90deg,
+    rgb(236 72 153 / 0.16),
+    rgb(139 92 246 / 0.2),
+    rgb(6 182 212 / 0.16),
+    rgb(236 72 153 / 0.16)
+  );
+  border-radius: 9999px;
+  filter: blur(65px);
+  height: min(70vw, 700px);
+  position: absolute;
+  width: min(70vw, 700px);
+}
+
+.skillField {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.skillField::before,
+.skillField::after {
+  animation: cosmicDust 1.25s ease-in both;
+  background: #ffffff;
+  border-radius: 9999px;
+  box-shadow:
+    -42vw -35vh 0 0 rgb(236 72 153 / 0.7),
+    -28vw -12vh 0 1px rgb(139 92 246 / 0.55),
+    -46vw 22vh 0 0 rgb(6 182 212 / 0.75),
+    -18vw 38vh 0 1px rgb(236 72 153 / 0.55),
+    7vw -43vh 0 0 rgb(6 182 212 / 0.7),
+    24vw -29vh 0 1px rgb(139 92 246 / 0.6),
+    43vw -8vh 0 0 rgb(236 72 153 / 0.65),
+    37vw 31vh 0 1px rgb(6 182 212 / 0.65),
+    12vw 43vh 0 0 rgb(139 92 246 / 0.7);
+  content: "";
+  height: 3px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  width: 3px;
+}
+
+.skillField::after {
+  animation-delay: 260ms;
+  transform: rotate(22deg);
+}
+
+.skillBadge {
+  --skill-color: #8b5cf6;
+  --skill-delay: 0ms;
+  --start-rotation: 0deg;
+  --start-x: 0;
+  --start-y: 0;
+
+  animation: skillConverge 1.35s cubic-bezier(0.2, 0.72, 0.2, 1)
+    var(--skill-delay) both;
+  color: var(--skill-color);
+  filter: drop-shadow(
+    0 0 8px color-mix(in srgb, var(--skill-color) 52%, transparent)
+  );
+  font-size: 25px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  will-change: opacity, transform;
+}
+
+.skillBadge:nth-child(3n) {
+  font-size: 20px;
+}
+
+.skillBadge:nth-child(4n) {
+  font-size: 29px;
+}
+
+.skillBadge:nth-child(n + 13) {
+  font-size: 18px;
+}
+
+.logoStage {
+  align-items: center;
+  display: flex;
+  height: 190px;
+  justify-content: center;
+  position: relative;
+  width: 190px;
+  z-index: 4;
+}
+
+.logoStage::before {
+  animation: energyCompact 720ms cubic-bezier(0.2, 0.72, 0.2, 1) 1.05s both;
+  background: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.98) 0%,
+    rgb(236 72 153 / 0.65) 18%,
+    rgb(139 92 246 / 0.38) 42%,
+    rgb(6 182 212 / 0) 72%
+  );
+  border-radius: 9999px;
+  content: "";
+  height: 180px;
+  position: absolute;
+  width: 180px;
+  z-index: 3;
+}
+
+.logoStage::after {
+  animation: pressureBuild 360ms ease-in-out 1.76s infinite alternate;
+  border: 1px solid rgb(236 72 153 / 0.5);
+  border-radius: 9999px;
+  box-shadow:
+    inset 0 0 18px rgb(139 92 246 / 0.22),
+    0 0 16px rgb(6 182 212 / 0.22);
+  content: "";
+  height: 126px;
+  opacity: 0;
+  position: absolute;
+  width: 126px;
+  z-index: 4;
+}
+
+.logoShell {
+  align-items: center;
+  animation:
+    logoArrive 600ms cubic-bezier(0.22, 1, 0.36, 1) both,
+    compressedCoreHold 620ms ease-in-out 1.76s infinite alternate;
+  display: flex;
+  height: 112px;
+  justify-content: center;
+  position: relative;
+  width: 112px;
+  z-index: 5;
+}
+
+.logo {
+  filter: drop-shadow(0 18px 24px rgb(88 28 135 / 0.2));
+  height: 112px;
+  object-fit: contain;
+  width: 112px;
+}
+
+.orbit,
+.chargeRing,
+.impactRing,
+.impactRingSecondary {
+  border-radius: 9999px;
+  position: absolute;
+}
+
+.orbit {
+  animation:
+    orbitSpin 1.8s linear infinite,
+    orbitCharge 260ms ease-in-out 1.76s infinite alternate;
+  border: 1px solid rgb(139 92 246 / 0.22);
+  height: 152px;
+  width: 152px;
+}
+
+.orbit::before,
+.orbit::after {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
+  border: 3px solid white;
+  border-radius: 9999px;
+  box-shadow: 0 0 13px rgb(139 92 246 / 0.55);
+  content: "";
+  height: 11px;
+  position: absolute;
+  width: 11px;
+}
+
+.orbit::before {
+  left: 13px;
+  top: 20px;
+}
+
+.orbit::after {
+  bottom: 14px;
+  right: 19px;
+}
+
+.chargeRing {
+  animation: chargePulse 760ms ease-out 900ms 2;
+  border: 2px solid rgb(168 85 247 / 0.4);
+  height: 130px;
+  opacity: 0;
+  width: 130px;
+}
+
+.impactRing,
+.impactRingSecondary {
+  border: 2px solid rgb(168 85 247 / 0.56);
+  height: 120px;
+  opacity: 0;
+  width: 120px;
+}
+
+.caption {
+  align-items: center;
+  animation: captionEnter 500ms ease-out 500ms both;
+  bottom: max(9vh, 44px);
+  color: #64748b;
+  display: flex;
+  font-size: 10px;
+  font-weight: 800;
+  gap: 10px;
+  letter-spacing: 0.2em;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.captionDot {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
+  border-radius: 9999px;
+  height: 5px;
+  width: 5px;
+}
+
+.sparkOne,
+.sparkTwo,
+.sparkThree,
+.sparkFour {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6, #06b6d4);
+  border-radius: 9999px;
+  height: 6px;
+  opacity: 0;
+  position: absolute;
+  width: 6px;
+  z-index: 6;
+}
+
+.exiting {
+  animation: loaderReveal 650ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  pointer-events: none;
+}
+
+.exiting .logoShell {
+  animation: logoBoom 650ms cubic-bezier(0.32, 0, 0.2, 1) forwards;
+}
+
+.exiting .orbit,
+.exiting .chargeRing {
+  opacity: 0;
+}
+
+.exiting .impactRing {
+  animation: impactExpand 620ms ease-out forwards;
+}
+
+.exiting .impactRingSecondary {
+  animation: impactExpand 620ms ease-out 80ms forwards;
+}
+
+.exiting .caption {
+  animation: captionExit 220ms ease-in forwards;
+}
+
+.exiting .skillBadge {
+  animation: skillExplode 620ms cubic-bezier(0.12, 0.72, 0.18, 1) forwards;
+}
+
+.exiting .skillField::before {
+  animation: rayBurst 620ms ease-out forwards;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgb(236 72 153 / 0.78) 0deg 0.7deg,
+    transparent 1deg 11deg,
+    rgb(139 92 246 / 0.62) 11.5deg 12deg,
+    transparent 12.5deg 23deg
+  );
+  border-radius: 9999px;
+  box-shadow: none;
+  height: 42vmax;
+  left: 50%;
+  mask-image: radial-gradient(
+    circle,
+    transparent 0 9%,
+    black 15%,
+    rgb(0 0 0 / 0.78) 38%,
+    transparent 68%
+  );
+  top: 50%;
+  width: 42vmax;
+}
+
+.exiting .skillField::after {
+  animation: rayBurstSecondary 620ms ease-out 45ms forwards;
+  background: repeating-conic-gradient(
+    from 8deg,
+    rgb(6 182 212 / 0.72) 0deg 0.55deg,
+    transparent 0.9deg 15deg,
+    rgb(255 255 255 / 0.82) 15.5deg 16deg,
+    transparent 16.5deg 29deg
+  );
+  border-radius: 9999px;
+  box-shadow: none;
+  height: 36vmax;
+  left: 50%;
+  mask-image: radial-gradient(
+    circle,
+    transparent 0 12%,
+    black 18%,
+    rgb(0 0 0 / 0.68) 42%,
+    transparent 72%
+  );
+  top: 50%;
+  width: 36vmax;
+}
+
+.exiting .sparkOne,
+.exiting .sparkTwo,
+.exiting .sparkThree,
+.exiting .sparkFour {
+  animation: sparkBurst 520ms ease-out forwards;
+}
+
+.exiting .sparkOne {
+  --spark-x: -105px;
+  --spark-y: -82px;
+}
+
+.exiting .sparkTwo {
+  --spark-x: 112px;
+  --spark-y: -68px;
+  animation-delay: 35ms;
+}
+
+.exiting .sparkThree {
+  --spark-x: 98px;
+  --spark-y: 92px;
+  animation-delay: 70ms;
+}
+
+.exiting .sparkFour {
+  --spark-x: -108px;
+  --spark-y: 78px;
+  animation-delay: 20ms;
+}
+
+@keyframes skillConverge {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--start-x), var(--start-y), 0)
+      rotate(var(--start-rotation)) scale(0.55);
+  }
+
+  12% {
+    opacity: 0.95;
+  }
+
+  72% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.82);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(0.08);
+  }
+}
+
+@keyframes skillExplode {
+  0% {
+    filter: brightness(2)
+      drop-shadow(
+        0 0 12px color-mix(in srgb, var(--skill-color) 75%, transparent)
+      );
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(0.08);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(0.68);
+  }
+
+  58% {
+    filter: brightness(1.4)
+      drop-shadow(
+        0 0 9px color-mix(in srgb, var(--skill-color) 62%, transparent)
+      );
+    opacity: 0.95;
+  }
+
+  100% {
+    filter: brightness(1)
+      drop-shadow(
+        0 0 4px color-mix(in srgb, var(--skill-color) 35%, transparent)
+      );
+    opacity: 0;
+    transform: translate3d(var(--start-x), var(--start-y), 0)
+      rotate(var(--start-rotation)) scale(1.15);
+  }
+}
+
+@keyframes rayBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.08) rotate(-8deg);
+  }
+
+  18% {
+    opacity: 0.92;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3.4) rotate(10deg);
+  }
+}
+
+@keyframes rayBurstSecondary {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.05) rotate(9deg);
+  }
+
+  22% {
+    opacity: 0.78;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(3.8) rotate(-12deg);
+  }
+}
+
+@keyframes cosmicDust {
+  0% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.05);
+  }
+}
+
+@keyframes logoArrive {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes energyCompact {
+  0% {
+    opacity: 0;
+    transform: scale(2.8);
+  }
+
+  42% {
+    opacity: 0.72;
+  }
+
+  82% {
+    opacity: 1;
+    transform: scale(0.36);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.08);
+  }
+}
+
+@keyframes compressedCoreHold {
+  0% {
+    filter: brightness(1) saturate(1);
+    transform: scale(0.9) translate3d(0, 0, 0);
+  }
+
+  35% {
+    filter: brightness(1.14) saturate(1.18);
+    transform: scale(0.84) translate3d(-1px, 0, 0);
+  }
+
+  68% {
+    filter: brightness(1.22) saturate(1.3);
+    transform: scale(0.87) translate3d(1px, -1px, 0);
+  }
+
+  100% {
+    filter: brightness(1.3) saturate(1.4);
+    transform: scale(0.82) translate3d(0, 1px, 0);
+  }
+}
+
+@keyframes pressureBuild {
+  from {
+    border-color: rgb(6 182 212 / 0.38);
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+
+  to {
+    border-color: rgb(236 72 153 / 0.78);
+    box-shadow:
+      inset 0 0 24px rgb(139 92 246 / 0.32),
+      0 0 24px rgb(236 72 153 / 0.3);
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes orbitCharge {
+  from {
+    filter: brightness(1);
+    opacity: 0.65;
+  }
+
+  to {
+    filter: brightness(1.5) drop-shadow(0 0 7px rgb(139 92 246 / 0.55));
+    opacity: 1;
+  }
+}
+
+@keyframes chargePulse {
+  from {
+    opacity: 0.8;
+    transform: scale(0.82);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ambientBreathe {
+  from {
+    opacity: 0.7;
+    transform: scale(0.9) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.08) rotate(8deg);
+  }
+}
+
+@keyframes captionEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loaderReveal {
+  0% {
+    opacity: 1;
+  }
+
+  62% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes logoBoom {
+  0% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
+
+  36% {
+    filter: brightness(1.2);
+    transform: scale(0.82);
+  }
+
+  68% {
+    filter: brightness(1.6);
+    transform: scale(1.32);
+  }
+
+  100% {
+    filter: brightness(1.8);
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}
+
+@keyframes impactExpand {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.75);
+  }
+
+  100% {
+    border-width: 1px;
+    opacity: 0;
+    transform: scale(9);
+  }
+}
+
+@keyframes sparkBurst {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--spark-x), var(--spark-y), 0) scale(0);
+  }
+}
+
+@keyframes captionExit {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 640px) {
+  .skillBadge,
+  .skillBadge:nth-child(3n),
+  .skillBadge:nth-child(4n) {
+    font-size: 18px;
+  }
+
+  .skillBadge:nth-child(n + 13) {
+    font-size: 15px;
+  }
+
+  .skillBadge:nth-child(n + 21) {
+    display: none;
+  }
+
+  .logoStage {
+    transform: scale(0.88);
+  }
+
+  .caption {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambientGlow,
+  .chargeRing,
+  .logoStage::after,
+  .logoStage::before,
+  .orbit,
+  .skillBadge {
+    animation: none;
+  }
+
+  .skillBadge,
+  .orbit,
+  .chargeRing,
+  .caption {
+    display: none;
+  }
+
+  .skillField::before,
+  .skillField::after {
+    display: none;
+  }
+
+  .loader,
+  .exiting,
+  .exiting .logoShell {
+    animation-duration: 100ms;
+  }
+}

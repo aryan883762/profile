@@ -1,7 +1,34 @@
-import { FaExternalLinkAlt } from "react-icons/fa";
+import {
+    FaBriefcase,
+    FaExternalLinkAlt,
+    FaLaptopCode,
+    FaMobileAlt,
+} from "react-icons/fa";
 
 import ExperienceCloud from "./ExperienceCloud";
+import { profileLinks } from "@/constants/navigation";
 import styles from "./Hero.module.css";
+
+const impactStats = [
+    {
+        value: "9+",
+        label: "Years Experience",
+        icon: FaBriefcase,
+        iconColor: "text-violet-500",
+    },
+    {
+        value: "10+",
+        label: "Mobile Apps",
+        icon: FaMobileAlt,
+        iconColor: "text-fuchsia-500",
+    },
+    {
+        value: "20+",
+        label: "Web Apps",
+        icon: FaLaptopCode,
+        iconColor: "text-cyan-500",
+    },
+] as const;
 
 const Hero = () => {
     return (
@@ -18,12 +45,12 @@ const Hero = () => {
 
             <div
                 className="
-          relative mx-auto grid w-full max-w-screen-xl
-          items-center gap-8 px-5 pb-10 pt-8
-          sm:px-6 sm:pb-14 sm:pt-12
+          relative mx-auto grid w-full max-w-[1240px]
+          items-center gap-8 px-5 pb-9 pt-8
+          sm:px-6 sm:pb-12 sm:pt-10
           md:px-12
-          lg:grid-cols-[0.95fr_1.05fr]
-          lg:gap-14 lg:px-16 lg:py-16
+          lg:grid-cols-[1.05fr_0.95fr]
+          lg:gap-10 lg:px-12 lg:py-10
         "
                 data-aos="fade-up"
                 data-aos-duration="1000"
@@ -34,45 +61,97 @@ const Hero = () => {
                     data-aos="fade-right"
                     data-aos-duration="1200"
                 >
-                    <p className="mb-3 text-sm font-medium text-pink-500 sm:text-base">
-                        Hi, I&apos;m Kumar Aryan
+                    <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-pink-500 sm:text-xs">
+                        <span className="h-px w-6 bg-pink-400" aria-hidden="true" />
+                        Kumar Aryan
                     </p>
 
-                    <h1 className="text-[32px] font-extrabold leading-[1.08] tracking-tight text-slate-950 sm:text-5xl lg:text-[40px] xl:text-5xl">
-                        <span className="lg:block">Senior Full-Stack,</span>{" "}
-                        <span className="lg:block lg:whitespace-nowrap">
-                            Mobile &amp; AI Developer
+                    <h1 className="mt-3 text-[34px] font-extrabold leading-[1.06] tracking-[-0.035em] text-slate-950 sm:text-[42px] lg:text-[38px] xl:text-[44px]">
+                        <span className="block">Senior Full-Stack,</span>
+                        <span className="block">
+                            React Native &amp;{" "}
+                            <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
+                                AI
+                            </span>{" "}
+                            Developer
                         </span>
                     </h1>
 
-                    <p className="mt-5 max-w-xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-                        7+ years building scalable web, mobile, and AI-powered
-                        applications with React, Next.js, Angular, Vue.js, React Native,
-                        Flutter, Node.js, and modern AI integrations. I help startups,
-                        agencies, and product teams deliver SaaS platforms, intelligent
-                        automation, dashboards, customer portals, and e-commerce
-                        solutions.
-                    </p>
+                    <div
+                        className="mt-4 flex max-w-full flex-wrap items-center gap-x-2 gap-y-1 whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.1em] text-slate-500 min-[380px]:gap-x-2.5 sm:text-[10px]"
+                        aria-label="Core technologies"
+                    >
+                        {[
+                            "React / Next.js",
+                            "Node.js",
+                            "React Native",
+                            "AI / LLMs",
+                        ].map((technology, index) => (
+                            <span
+                                key={technology}
+                                className="flex items-center gap-2 min-[380px]:gap-2.5"
+                            >
+                                {index > 0 && (
+                                    <span className="text-pink-400" aria-hidden="true">
+                                        |
+                                    </span>
+                                )}
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+
+                    <div className="mt-5 max-w-lg border-l-2 border-pink-400/80 pl-4">
+                        <p className="text-[13px] leading-6 text-slate-700 sm:text-sm">
+                            With 9+ years of experience, I design and ship{" "}
+                            <span className="font-semibold text-slate-900">
+                                production-grade web, React Native, and AI platforms
+                            </span>
+                            &mdash;from scalable interfaces and Node.js services to LLM
+                            workflows and cloud deployment.
+                        </p>
+
+                        <div className="mt-2 space-y-0.5 text-[10px] leading-[1.7] text-slate-500 sm:text-[11px]">
+                            <p>
+                                <span className="font-mono font-bold tracking-wide text-purple-600">
+                                    STACK /
+                                </span>{" "}
+                                TypeScript &middot; React / Next.js &middot; Angular /
+                                Vue.js &middot; Node.js / Express &middot; MERN / MEAN /
+                                MEVN &middot; React Native / Flutter
+                            </p>
+
+                            <p>
+                                <span className="font-mono font-bold tracking-wide text-cyan-600">
+                                    SYSTEMS /
+                                </span>{" "}
+                                REST / GraphQL &middot; MongoDB / PostgreSQL &middot;
+                                OpenAI / LLMs &middot; DevOps &middot; GitHub Actions
+                                CI/CD &middot; Docker / Kubernetes &middot; AWS / Firebase
+                                / Supabase
+                            </p>
+                        </div>
+                    </div>
 
                     {/* Actions */}
                     <div
-                        className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"
+                        className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap"
                         data-aos="zoom-in"
                         data-aos-delay={200}
                     >
                         <a
-                            href="https://www.upwork.com/freelancers/~015ed81f3311203b69"
+                            href={profileLinks.upwork}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="
-                inline-flex min-h-11 min-w-0 items-center justify-center gap-1.5
-                rounded-full bg-pink-500 px-2.5 py-2.5
-                text-[9px] font-semibold text-white
+                inline-flex min-h-10 min-w-0 items-center justify-center gap-1.5
+                rounded-full bg-pink-500 px-3 py-2
+                text-[10px] font-semibold text-white
                 shadow-md
                 transition duration-300
                 hover:-translate-y-0.5 hover:bg-pink-600
-                min-[380px]:px-3 min-[380px]:text-[10px]
-                sm:px-7 sm:py-3 sm:text-sm
+                min-[380px]:text-[11px]
+                sm:px-6 sm:py-2.5 sm:text-[13px]
               "
                         >
                             <span className="truncate">Hire Me on Upwork</span>
@@ -83,93 +162,65 @@ const Hero = () => {
                         <a
                             href="#projects"
                             className="
-                inline-flex min-h-11 min-w-0 items-center justify-center
+                inline-flex min-h-10 min-w-0 items-center justify-center
                 rounded-full border border-slate-200
-                bg-white/70 px-2.5 py-2.5
-                text-[9px] font-semibold text-slate-700
+                bg-white/70 px-3 py-2
+                text-[10px] font-semibold text-slate-700
                 shadow-sm backdrop-blur-md
                 transition duration-300
                 hover:-translate-y-0.5
                 hover:border-pink-300 hover:text-pink-500
-                min-[380px]:px-3 min-[380px]:text-[10px]
-                sm:px-7 sm:py-3 sm:text-sm
+                min-[380px]:text-[11px]
+                sm:px-6 sm:py-2.5 sm:text-[13px]
               "
                         >
                             View Projects
                         </a>
                     </div>
 
-                    {/* Mobile statistics */}
-                    <div className="mt-5 lg:hidden">
-                        <div className="grid grid-cols-3 divide-x divide-slate-200/80 overflow-hidden rounded-2xl border border-white/80 bg-white/65 shadow-sm backdrop-blur-xl">
-                            {/* Experience */}
-                            <div className="flex min-h-[82px] flex-col items-center justify-center px-1.5 py-3 text-center">
-                                <p className="text-xl font-extrabold leading-none text-slate-900">
-                                    7+
-                                </p>
+                    {/* Engineering impact */}
+                    <div className="mt-6 max-w-lg">
+                        <div className="flex items-center justify-between gap-4">
+                            <p className="flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-violet-700 sm:text-[10px]">
+                                <span className="h-px w-5 bg-violet-500" aria-hidden="true" />
+                                Selected impact
+                            </p>
 
-                                <p className="mt-1.5 text-[8px] font-medium leading-3 text-slate-500">
-                                    Years Experience
-                                </p>
-                            </div>
-
-                            {/* Companies */}
-                            <div className="flex min-h-[82px] flex-col items-center justify-center px-1.5 py-3 text-center">
-                                <p className="text-xl font-extrabold leading-none text-slate-900">
-                                    5
-                                </p>
-
-                                <p className="mt-1.5 text-[8px] font-medium leading-3 text-slate-500">
-                                    Companies
-                                </p>
-                            </div>
-
-                            {/* Web and mobile */}
-                            <div className="flex min-h-[82px] flex-col items-center justify-center px-1.5 py-3 text-center">
-                                <p className="text-[12px] font-extrabold leading-4 text-slate-900 min-[380px]:text-[13px]">
-                                    Web + Mobile
-                                </p>
-
-                                <p className="mt-1.5 text-[8px] font-medium leading-3 text-slate-500">
-                                    Development
-                                </p>
-                            </div>
+                            <p className="text-[9px] font-medium text-slate-500 sm:text-[10px]">
+                                Measured in production
+                            </p>
                         </div>
-                    </div>
 
-                    {/* Desktop statistics */}
-                    <div className="mt-10 hidden max-w-lg overflow-hidden rounded-2xl border border-white/70 bg-white/45 shadow-sm backdrop-blur-md lg:block">
-                        <div className="grid grid-cols-3 divide-x divide-slate-300/60">
-                            <div className="px-4 py-4 text-center">
-                                <p className="text-2xl font-extrabold leading-none text-slate-900">
-                                    7+
-                                </p>
+                        <dl className="relative mt-3 grid grid-cols-3">
+                            <div
+                                className="absolute left-[16.66%] right-[16.66%] top-7 h-px bg-gradient-to-r from-violet-200 via-violet-400 to-violet-200"
+                                aria-hidden="true"
+                            />
 
-                                <p className="mt-1 text-[11px] font-medium leading-3 text-slate-500">
-                                    Years Experience
-                                </p>
-                            </div>
+                            {impactStats.map(
+                                ({ value, label, icon: Icon, iconColor }) => (
+                                <div
+                                    key={label}
+                                    className="relative flex min-w-0 flex-col items-center px-1 text-center"
+                                >
+                                    <dd className="relative z-10 flex h-14 w-14 flex-col items-center justify-center gap-1 rounded-full border border-violet-200 bg-white/85 font-extrabold tracking-tight shadow-lg shadow-violet-300/20 ring-4 ring-white/45 backdrop-blur-md sm:h-16 sm:w-16">
+                                        <Icon
+                                            className={`text-xs sm:text-sm ${iconColor}`}
+                                            aria-hidden="true"
+                                        />
 
-                            <div className="px-4 py-4 text-center">
-                                <p className="text-2xl font-extrabold leading-none text-slate-900">
-                                    5
-                                </p>
+                                        <span className="text-base leading-none text-slate-900 sm:text-lg">
+                                            {value}
+                                        </span>
+                                    </dd>
 
-                                <p className="mt-1 text-[11px] font-medium leading-3 text-slate-500">
-                                    Companies
-                                </p>
-                            </div>
-
-                            <div className="px-4 py-4 text-center">
-                                <p className="text-xl font-extrabold leading-5 text-slate-900">
-                                    Web + Mobile
-                                </p>
-
-                                <p className="mt-1 text-[11px] font-medium leading-3 text-slate-500">
-                                    Development
-                                </p>
-                            </div>
-                        </div>
+                                    <dt className="mt-2 whitespace-nowrap text-[8px] font-semibold leading-3 text-slate-600 sm:text-[10px] sm:leading-4">
+                                        {label}
+                                    </dt>
+                                </div>
+                                ),
+                            )}
+                        </dl>
                     </div>
                 </div>
 

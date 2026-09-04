@@ -4,11 +4,11 @@ import { experiences } from "@/data/experiences";
 const ExperienceCloud = () => {
   return (
     <div
-      className="relative mx-auto w-full max-w-xl lg:flex lg:min-h-[620px] lg:max-w-none lg:items-center lg:justify-center"
+      className="relative mx-auto w-full max-w-xl lg:min-h-[540px] lg:max-w-none"
       data-aos="fade-left"
       data-aos-duration="1200"
     >
-      <div className="relative hidden h-[620px] w-[570px] lg:block">
+      <div className="absolute left-1/2 top-1/2 hidden h-[620px] w-[570px] -translate-x-1/2 -translate-y-1/2 scale-[0.82] lg:block xl:scale-[0.88]">
         {/* Background glow */}
         <div className="absolute left-1/2 top-1/2 h-[430px] w-[430px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-pink-300/30 via-purple-300/30 to-cyan-300/30 blur-3xl" />
 
@@ -23,7 +23,7 @@ const ExperienceCloud = () => {
           fill="none"
           aria-hidden="true"
         >
-          {/* Heady to Fig */}
+          {/* Heady to Launch27 */}
           <g>
             <path
               d="M120 130 C225 65 330 175 450 110"
@@ -35,7 +35,7 @@ const ExperienceCloud = () => {
             />
           </g>
 
-          {/* Fig to Mechlin */}
+          {/* Launch27 to Datetix */}
           <g>
             <path
               d="M450 110 C530 220 400 270 450 395"
@@ -47,7 +47,7 @@ const ExperienceCloud = () => {
             />
           </g>
 
-          {/* Mechlin to Technicus */}
+          {/* Datetix to Mechlin */}
           <g>
             <path
               d="M450 395 C350 520 250 410 125 500"
@@ -59,7 +59,7 @@ const ExperienceCloud = () => {
             />
           </g>
 
-          {/* Technicus to Heady */}
+          {/* Mechlin to Heady */}
           <g>
             <path
               d="M125 500 C35 390 185 320 110 220"
@@ -83,7 +83,7 @@ const ExperienceCloud = () => {
             />
           </g>
 
-          {/* Datetix to Mechlin */}
+          {/* Digigini to Mechlin */}
           <g>
             <path
               d="M285 310 C350 325 395 350 450 395"

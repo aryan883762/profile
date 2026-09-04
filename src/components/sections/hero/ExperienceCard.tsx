@@ -19,8 +19,6 @@ const ExperienceCard = ({
                 "group relative overflow-hidden rounded-3xl border border-white/80 bg-white/80 p-4 shadow-xl shadow-purple-300/20 backdrop-blur-xl transition-all duration-500 hover:z-40 hover:-translate-y-3 hover:rotate-0 hover:scale-105 hover:shadow-2xl hover:shadow-purple-400/30",
                 featured && "p-5 shadow-2xl",
             )}
-            data-aos="zoom-in"
-            data-aos-delay={index * 100}
         >
             <div
                 className={clsx(
