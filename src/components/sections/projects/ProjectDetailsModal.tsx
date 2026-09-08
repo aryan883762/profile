@@ -2,51 +2,18 @@
 
 import { useRef } from "react";
 import clsx from "clsx";
-import { FaCheckCircle, FaExternalLinkAlt, FaRocket, FaTimes } from "react-icons/fa";
+import {
+    FaBriefcase,
+    FaCheckCircle,
+    FaExternalLinkAlt,
+    FaRocket,
+    FaTimes,
+} from "react-icons/fa";
 
 import ProjectModalGallery from "./ProjectModalGallery";
 import { useDialogAccessibility } from "@/hooks/useDialogAccessibility";
 import type { Project } from "@/types/project";
 import styles from "./Projects.module.css";
-
-type ProjectDetailListProps = {
-    title: string;
-    items?: string[];
-    gradient: string;
-};
-
-const ProjectDetailList = ({
-    title,
-    items,
-    gradient,
-}: ProjectDetailListProps) => {
-    if (!items?.length) return null;
-
-    return (
-        <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-            <h4 className="text-sm font-bold uppercase tracking-[0.12em] text-slate-900">
-                {title}
-            </h4>
-
-            <ul className="mt-3 space-y-2.5 sm:mt-4 sm:space-y-3">
-                {items.map((item) => (
-                    <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-[13px] leading-[1.375rem] text-slate-600 sm:gap-3 sm:text-sm sm:leading-6"
-                    >
-                        <span
-                            className={clsx(
-                                "mt-2 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r",
-                                gradient,
-                            )}
-                        />
-                        <span>{item}</span>
-                    </li>
-                ))}
-            </ul>
-        </section>
-    );
-};
 
 type ProjectModalProps = {
     project: Project | null;
@@ -111,8 +78,8 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                         </p>
                     </header>
 
-                    <div className="mt-5 grid gap-5 sm:mt-7 sm:gap-7 lg:grid-cols-[1.4fr_0.6fr]">
-                        <section>
+                    <div className="mt-5 space-y-4 sm:mt-7 sm:space-y-5">
+                        <section className="rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50/80 via-white to-cyan-50/70 p-4 sm:p-5">
                             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-purple-200 bg-purple-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-purple-600">
                                 <FaRocket />
                                 Project Overview
@@ -123,16 +90,58 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                             </p>
                         </section>
 
-                        <section>
-                            <h4 className="text-sm font-bold uppercase tracking-[0.12em] text-slate-900">
-                                Technology Stack
-                            </h4>
+                        <div className="grid gap-4 md:grid-cols-[0.8fr_1.2fr]">
+                            <section className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+                                <div className="flex items-center gap-3">
+                                    <span
+                                        className={clsx(
+                                            "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm",
+                                            project.gradient,
+                                        )}
+                                    >
+                                        <FaBriefcase />
+                                    </span>
+                                    <div>
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                                            My Role
+                                        </p>
+                                        <h4 className="mt-1 text-sm font-bold text-slate-900">
+                                            {project.role}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <p className="mt-4 text-[13px] leading-6 text-slate-600 sm:text-sm">
+                                    {project.description}
+                                </p>
+                            </section>
 
-                            <div className="mt-4 flex flex-wrap gap-2">
+                            <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                                <h4 className="text-sm font-bold text-slate-900">
+                                    What I Worked On
+                                </h4>
+                                <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                                    {project.contributions.map((contribution) => (
+                                        <li
+                                            key={contribution}
+                                            className="flex items-start gap-2.5 text-[13px] leading-5 text-slate-600"
+                                        >
+                                            <FaCheckCircle className="mt-0.5 shrink-0 text-purple-500" />
+                                            <span>{contribution}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </section>
+                        </div>
+
+                        <section className="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+                            <h4 className="text-sm font-bold text-slate-900">
+                                Technologies I Used
+                            </h4>
+                            <div className="mt-3 flex flex-wrap gap-2">
                                 {project.tech.map(({ name, icon: Icon }) => (
                                     <div
                                         key={name}
-                                        className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-600 shadow-sm"
+                                        className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600"
                                     >
                                         <Icon className="text-sm text-purple-600" />
                                         {name}
@@ -140,32 +149,6 @@ const ProjectDetailsModal = ({ project, onClose }: ProjectModalProps) => {
                                 ))}
                             </div>
                         </section>
-                    </div>
-
-                    <div className="mt-5 grid gap-3 sm:mt-7 sm:gap-4 md:grid-cols-2">
-                        <ProjectDetailList
-                            title="Key Contributions"
-                            items={project.contributions}
-                            gradient={project.gradient}
-                        />
-
-                        <ProjectDetailList
-                            title="Project Challenges"
-                            items={project.challenges}
-                            gradient={project.gradient}
-                        />
-
-                        <ProjectDetailList
-                            title="Solutions Delivered"
-                            items={project.solutions}
-                            gradient={project.gradient}
-                        />
-
-                        <ProjectDetailList
-                            title="Project Results"
-                            items={project.results}
-                            gradient={project.gradient}
-                        />
                     </div>
 
                     <div className="mt-5 flex flex-col gap-3 rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 via-white to-cyan-50 p-4 sm:mt-7 sm:flex-row sm:items-center sm:justify-between sm:p-5">

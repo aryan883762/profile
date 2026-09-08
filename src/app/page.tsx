@@ -2,7 +2,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import PageBackground from "@/components/layout/PageBackground";
 import ContactSection from "@/components/sections/contact/ContactSection";
-import ProjectsSection from "@/components/sections/projects/ProjectsSection";
+import ProjectsSectionV2 from "@/components/sections/projects/ProjectsSectionV2";
 import SkillsSection from "@/components/sections/skills/SkillsSection";
 import DeveloperDNA from "@/components/sections/developer-dna/DeveloperDNA";
 import ExperienceSection from "@/components/sections/experience/ExperienceSection";
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <DeveloperDNA />
         <SkillsSection />
-        <ProjectsSection />
+        <ProjectsSectionV2 />
         <ExperienceSection />
         <ContactSection />
       </main>

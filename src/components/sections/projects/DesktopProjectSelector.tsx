@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaGlobe,
+  FaLayerGroup,
+  FaMobileAlt,
+} from "react-icons/fa";
 
 import { formatCarouselPosition } from "@/utils/format-carousel-position";
 import type { Project } from "@/types/project";
@@ -14,6 +20,20 @@ interface DesktopProjectSelectorProps {
   onSelect: (index: number) => void;
   projects: Project[];
 }
+
+const getProjectType = (project: Project) => {
+  const role = project.role.toLowerCase();
+
+  if (role.includes("full stack")) {
+    return { icon: FaLayerGroup, label: "Full stack" };
+  }
+
+  if (role.includes("mobile") || role.includes("react native")) {
+    return { icon: FaMobileAlt, label: "Mobile" };
+  }
+
+  return { icon: FaGlobe, label: "Web" };
+};
 
 const DesktopProjectSelector = ({
   activeIndex,
@@ -133,6 +153,8 @@ const DesktopProjectSelector = ({
         >
           {projects.map((project, projectIndex) => {
             const isActive = projectIndex === activeIndex;
+            const { icon: ProjectTypeIcon, label: projectTypeLabel } =
+              getProjectType(project);
 
             return (
               <button
@@ -162,11 +184,17 @@ const DesktopProjectSelector = ({
                 <div className="flex w-full items-center gap-3">
                   <span
                     className={clsx(
-                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-[11px] font-bold text-white shadow-md",
+                      "relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-md",
                       project.gradient,
                     )}
+                    role="img"
+                    aria-label={`${projectTypeLabel} project`}
+                    title={`${projectTypeLabel} project`}
                   >
-                    {formatCarouselPosition(projectIndex + 1)}
+                    <ProjectTypeIcon className="text-sm" aria-hidden="true" />
+                    <span className="absolute -bottom-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full border border-white bg-slate-950 px-1 text-[7px] font-extrabold leading-none text-white shadow-sm">
+                      {formatCarouselPosition(projectIndex + 1)}
+                    </span>
                   </span>
 
                   <div className="min-w-0 flex-1">
@@ -178,8 +206,12 @@ const DesktopProjectSelector = ({
                     >
                       {project.shortTitle}
                     </p>
-                    <p className="mt-1 truncate text-[9px] text-slate-500">
-                      {project.role}
+                    <p className="mt-1 flex min-w-0 items-center gap-1 text-[9px] text-slate-500">
+                      <span className="shrink-0 font-semibold text-purple-600">
+                        {projectTypeLabel}
+                      </span>
+                      <span className="text-slate-300">•</span>
+                      <span className="truncate">{project.role}</span>
                     </p>
                   </div>
                 </div>
@@ -212,7 +244,7 @@ const DesktopProjectSelector = ({
           aria-hidden="true"
         />
 
-        <div className="col-start-1 row-start-1 flex h-56 w-6 self-center justify-self-center flex-col items-center rounded-full border border-purple-100/90 bg-gradient-to-b from-white via-purple-50/90 to-white py-3 shadow-[0_10px_30px_rgba(139,92,246,0.16)] backdrop-blur-md">
+        <div className="col-start-1 row-start-1 flex h-[440px] max-h-[calc(100%-16px)] w-6 self-center justify-self-center flex-col items-center rounded-full border border-purple-100/90 bg-gradient-to-b from-white via-purple-50/90 to-white py-3 shadow-[0_10px_30px_rgba(139,92,246,0.16)] backdrop-blur-md">
           <button
             type="button"
             onClick={() => scrollProjects("up")}
@@ -224,7 +256,7 @@ const DesktopProjectSelector = ({
           </button>
 
           <nav
-            className="my-4 flex min-h-0 flex-1 flex-col items-center justify-center gap-0.5"
+            className="my-4 flex min-h-0 flex-1 flex-col items-center justify-between"
             aria-label="Select a project"
           >
             {projects.map((project, projectIndex) => {
