@@ -25,7 +25,7 @@ export const experiences = [
   },
   {
     company: "Launch27",
-    role: "Frontend Developer",
+    role: "Full-Stack Developer",
     period: "April 2020 — April 2021",
     type: "Contract",
     location: "Remote",
@@ -61,7 +61,7 @@ export const experiences = [
   },
   {
     company: "Datetix Limited",
-    role: "Frontend Developer",
+    role: "Full-Stack Developer",
     period: "May 2019 — April 2020",
     type: "Contract",
     location: "Hong Kong SAR · Remote",
@@ -79,7 +79,7 @@ export const experiences = [
   },
   {
     company: "Mechlin Technologies",
-    role: "Software Engineer",
+    role: "Full-Stack Developer",
     period: "June 2017 — January 2020",
     type: "Full-time",
     location: "Sahibzada Ajit Singh Nagar, Punjab, India",
