@@ -23,6 +23,7 @@ import {
 import Container from "@/components/ui/Container";
 import SocialLinks from "./SocialLinks";
 import { headerSocialLinks, navigationLinks } from "@/constants/navigation";
+import { withBasePath } from "@/lib/asset-path";
 import styles from "./Header.module.css";
 
 const fallingTechnologies = [
@@ -250,7 +251,7 @@ const Header = () => {
           />
 
           <Image
-            src="/logos/aryan-logo-1.png"
+            src={withBasePath("/logos/aryan-logo-1.png")}
             alt="Kumar Aryan logo"
             width={80}
             height={80}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { FaCode } from "react-icons/fa";
 
+import { withBasePath } from "@/lib/asset-path";
 import type { Project } from "@/types/project";
 
 interface ProjectVisualProps {
@@ -22,7 +23,7 @@ const ProjectVisual = ({
   if (projectImage) {
     return (
       <Image
-        src={projectImage}
+        src={withBasePath(projectImage)}
         alt={`${project.title} project screenshot`}
         fill
         sizes={sizes}

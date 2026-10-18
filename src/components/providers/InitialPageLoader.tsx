@@ -44,6 +44,7 @@ import {
   SiVercel,
 } from "react-icons/si";
 
+import { withBasePath } from "@/lib/asset-path";
 import styles from "./InitialPageLoader.module.css";
 
 const MINIMUM_SEQUENCE_MS = 2550;
@@ -478,7 +479,7 @@ const InitialPageLoader = () => {
 
         <span className={styles.logoShell}>
           <Image
-            src="/logos/aryan-logo-1.png"
+            src={withBasePath("/logos/aryan-logo-1.png")}
             alt=""
             width={112}
             height={112}

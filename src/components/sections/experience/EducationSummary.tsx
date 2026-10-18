@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaGraduationCap, FaMapMarkerAlt } from "react-icons/fa";
 
 import { education } from "@/data/experiences";
+import { withBasePath } from "@/lib/asset-path";
 
 const EducationSummary = () => (
   <div
@@ -31,7 +32,7 @@ const EducationSummary = () => (
         >
           <div className="pointer-events-none absolute right-4 top-4 flex h-10 w-16 items-center justify-center opacity-90">
             <Image
-              src={item.logoUrl}
+              src={withBasePath(item.logoUrl)}
               alt=""
               width={80}
               height={48}

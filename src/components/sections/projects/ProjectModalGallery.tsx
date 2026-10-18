@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { FaImages } from "react-icons/fa";
 
 import ProjectMediaCarousel from "./ProjectMediaCarousel";
+import { withBasePath } from "@/lib/asset-path";
 import type { Project } from "@/types/project";
 import styles from "./Projects.module.css";
 
@@ -114,7 +115,7 @@ const ProjectModalGallery = ({ project }: ProjectModalGalleryProps) => {
                   style={{ animationDelay: `${Math.min(index * 35, 280)}ms` }}
                 >
                   <Image
-                    src={imagePath}
+                    src={withBasePath(imagePath)}
                     alt=""
                     fill
                     sizes="116px"

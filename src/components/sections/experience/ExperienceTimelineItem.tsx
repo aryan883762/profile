@@ -2,6 +2,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { FaCheck, FaMapMarkerAlt } from "react-icons/fa";
 
+import { withBasePath } from "@/lib/asset-path";
 import type { Experience } from "@/types/experience";
 
 interface ExperienceTimelineItemProps {
@@ -33,7 +34,7 @@ const ExperienceTimelineItem = ({
             )}
           >
             <Image
-              src={experience.logoUrl}
+              src={withBasePath(experience.logoUrl)}
               alt=""
               width={160}
               height={96}
