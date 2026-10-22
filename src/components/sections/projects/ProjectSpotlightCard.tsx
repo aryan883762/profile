@@ -135,9 +135,10 @@ const ProjectSpotlightCard = ({
       <ProjectMediaCarousel
         activeImageIndex={activeImageIndex}
         counterPosition="left"
+        layout="collage"
         project={project}
         sizes="(max-width: 1023px) 92vw, 820px"
-        imageClassName="object-fill"
+        imageClassName="object-contain"
         onNext={showNextImage}
         onPrevious={showPreviousImage}
         onSelect={setActiveImageIndex}

@@ -251,7 +251,7 @@ const Header = () => {
           />
 
           <Image
-            src={withBasePath("/logos/aryan-logo-1.png")}
+            src={withBasePath("/logos/aryan-logo-1.webp")}
             alt="Kumar Aryan logo"
             width={80}
             height={80}

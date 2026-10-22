@@ -69,7 +69,7 @@ const ProjectPreview = ({
         image={image}
         project={project}
         sizes="370px"
-        imageClassName="object-fill transition-transform duration-[1800ms] group-hover:scale-[1.07]"
+        imageClassName="object-cover transition-transform duration-[1800ms] group-hover:scale-[1.04]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/10 to-transparent" />
       <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-xs text-white backdrop-blur-xl">

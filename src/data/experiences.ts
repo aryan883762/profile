@@ -10,7 +10,7 @@ export const experiences = [
     initials: "H",
     logoAlt: "Heady logo",
     logoPanelClassName: "border-purple-100 bg-white",
-    logoUrl: "/images/company/heady.png",
+    logoUrl: "/images/company/heady.webp",
     gradient: "from-violet-600 to-purple-500",
     current: true,
     summary:
@@ -32,7 +32,7 @@ export const experiences = [
     initials: "L",
     logoAlt: "Launch27 logo",
     logoPanelClassName: "border-orange-100 bg-white",
-    logoUrl: "/images/company/Launch27_logo.png",
+    logoUrl: "/images/company/Launch27_logo.webp",
     gradient: "from-pink-500 to-rose-400",
     summary:
       "Delivered responsive booking and scheduling experiences for Launch27 while working directly with the client.",
@@ -68,7 +68,7 @@ export const experiences = [
     initials: "D",
     logoAlt: "Datetix Limited logo",
     logoPanelClassName: "border-slate-800 bg-slate-950",
-    logoUrl: "/images/company/datetixlogo_w.png",
+    logoUrl: "/images/company/datetixlogo_w.webp",
     gradient: "from-cyan-500 to-blue-500",
     summary:
       "Built customer-facing React interfaces and payment workflows for a Hong Kong-based product team.",
@@ -108,7 +108,7 @@ export const experiences = [
     logoAlt: "Technicus Infotech LLP logo",
     logoImageClassName: "origin-left object-left scale-x-[0.9] scale-y-[1.25]",
     logoPanelClassName: "border-slate-800 bg-slate-950",
-    logoUrl: "/images/company/technicus-logo.png",
+    logoUrl: "/images/company/technicus-logo.webp",
     gradient: "from-emerald-500 to-teal-400",
     summary:
       "Started the professional journey building and maintaining websites while completing engineering studies.",
@@ -125,7 +125,7 @@ export const education = [
     location: "Punjab, India",
     logoAlt: "Lovely Professional University logo",
     logoPanelClassName: "border-slate-100 bg-white",
-    logoUrl: "/images/company/lpu-logo.png",
+    logoUrl: "/images/company/lpu-logo.webp",
     qualification: "Bachelor of Technology in Computer Science and Engineering",
     period: "2014 — 2017",
   },
@@ -134,7 +134,7 @@ export const education = [
     location: "Punjab, India",
     logoAlt: "Lovely Professional University logo",
     logoPanelClassName: "border-slate-100 bg-white",
-    logoUrl: "/images/company/lpu-logo.png",
+    logoUrl: "/images/company/lpu-logo.webp",
     qualification: "Diploma in Computer Science and Engineering",
     period: "2011 — 2013",
   },

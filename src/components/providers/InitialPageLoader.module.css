@@ -264,12 +264,12 @@
 }
 
 .exiting {
-  animation: loaderReveal 650ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: loaderReveal 480ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
   pointer-events: none;
 }
 
 .exiting .logoShell {
-  animation: logoBoom 650ms cubic-bezier(0.32, 0, 0.2, 1) forwards;
+  animation: logoBoom 480ms cubic-bezier(0.32, 0, 0.2, 1) forwards;
 }
 
 .exiting .orbit,
@@ -278,11 +278,11 @@
 }
 
 .exiting .impactRing {
-  animation: impactExpand 620ms ease-out forwards;
+  animation: impactExpand 460ms ease-out forwards;
 }
 
 .exiting .impactRingSecondary {
-  animation: impactExpand 620ms ease-out 80ms forwards;
+  animation: impactExpand 460ms ease-out 40ms forwards;
 }
 
 .exiting .caption {

@@ -11,6 +11,7 @@ interface ProjectMediaCarouselProps {
   activeImageIndex: number;
   counterPosition?: "left" | "right";
   imageClassName?: string;
+  layout?: "single" | "collage";
   onNext: () => void;
   onPrevious: () => void;
   onSelect: (index: number) => void;
@@ -22,6 +23,7 @@ const ProjectMediaCarousel = ({
   activeImageIndex,
   counterPosition = "right",
   imageClassName,
+  layout = "single",
   onNext,
   onPrevious,
   onSelect,
@@ -31,25 +33,64 @@ const ProjectMediaCarousel = ({
   const images = project.images ?? (project.image ? [project.image] : []);
   const hasMultipleImages = images.length > 1;
   const activeImage = images[activeImageIndex] ?? images[0];
+  const collageImageIndexes = Array.from(
+    { length: Math.min(images.length, 3) },
+    (_, offset) => (activeImageIndex + offset) % images.length,
+  );
+  const showCollage = layout === "collage" && hasMultipleImages;
 
   return (
     <div
       className={clsx(
         styles.mediaEdgeShadow,
-        "absolute inset-0 overflow-hidden bg-slate-100",
+        "absolute overflow-hidden bg-slate-100",
+        layout === "collage"
+          ? "inset-x-0 top-0 bottom-[140px] sm:bottom-[148px]"
+          : "inset-0",
+        showCollage && styles.collageStage,
       )}
     >
-      <div
-        key={`${project.title}-${activeImageIndex}`}
-        className={styles.screenshotSlide}
-      >
-        <ProjectVisual
-          image={activeImage}
-          project={project}
-          sizes={sizes}
-          imageClassName={imageClassName}
-        />
-      </div>
+      {showCollage ? (
+        <div
+          key={`${project.title}-collage-${activeImageIndex}`}
+          className={styles.collageCanvas}
+        >
+          {collageImageIndexes.map((imageIndex, position) => (
+            <div
+              key={`${images[imageIndex]}-${position}`}
+              className={clsx(
+                styles.collageTile,
+                position === 0 && styles.collageTilePrimary,
+                position === 1 && styles.collageTileSecondary,
+                position === 2 && styles.collageTileTertiary,
+                images.length === 2 && styles.collageTilePair,
+              )}
+            >
+              <ProjectVisual
+                image={images[imageIndex]}
+                project={project}
+                sizes={position === 0 ? sizes : "(max-width: 639px) 48vw, 300px"}
+                imageClassName="object-contain"
+              />
+              <span className={styles.collageScreenNumber}>
+                {String(imageIndex + 1).padStart(2, "0")}
+              </span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div
+          key={`${project.title}-${activeImageIndex}`}
+          className={clsx(styles.screenshotSlide, styles.singleScreenshotFrame)}
+        >
+          <ProjectVisual
+            image={activeImage}
+            project={project}
+            sizes={sizes}
+            imageClassName={imageClassName}
+          />
+        </div>
+      )}
 
       {hasMultipleImages && (
         <>

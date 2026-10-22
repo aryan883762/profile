@@ -44,11 +44,13 @@ import {
   SiVercel,
 } from "react-icons/si";
 
+import { preloadAssetPaths } from "@/constants/preload-assets";
 import { withBasePath } from "@/lib/asset-path";
 import styles from "./InitialPageLoader.module.css";
 
-const MINIMUM_SEQUENCE_MS = 2550;
-const EXIT_SEQUENCE_MS = 650;
+const MINIMUM_SEQUENCE_MS = 420;
+const EXIT_SEQUENCE_MS = 480;
+const PRELOAD_CONCURRENCY = 6;
 
 const loaderSkills = [
   {
@@ -381,27 +383,27 @@ type LoaderPhase = "loading" | "exiting" | "hidden";
 
 const InitialPageLoader = () => {
   const [phase, setPhase] = useState<LoaderPhase>("loading");
+  const [loadedAssetCount, setLoadedAssetCount] = useState(0);
+  const progress = Math.round(
+    (loadedAssetCount / preloadAssetPaths.length) * 100,
+  );
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    const minimumDuration = prefersReducedMotion
-      ? 150
-      : MINIMUM_SEQUENCE_MS;
+    const minimumDuration = prefersReducedMotion ? 0 : MINIMUM_SEQUENCE_MS;
     const exitDuration = prefersReducedMotion ? 100 : EXIT_SEQUENCE_MS;
     const originalOverflow = document.documentElement.style.overflow;
     const originalBodyOverflow = document.body.style.overflow;
-    let isPageReady = document.readyState === "complete";
-    let isSequenceReady = false;
+    let isCancelled = false;
     let exitTimer: number | undefined;
+    let handlePageLoad: (() => void) | undefined;
 
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
     const beginExit = () => {
-      if (!isPageReady || !isSequenceReady) return;
-
       setPhase("exiting");
       exitTimer = window.setTimeout(() => {
         document.documentElement.style.overflow = originalOverflow;
@@ -410,23 +412,82 @@ const InitialPageLoader = () => {
       }, exitDuration);
     };
 
-    const handlePageLoad = () => {
-      isPageReady = true;
-      beginExit();
+    const waitForPageLoad = new Promise<void>((resolve) => {
+      if (document.readyState === "complete") {
+        resolve();
+        return;
+      }
+
+      handlePageLoad = resolve;
+      window.addEventListener("load", handlePageLoad, { once: true });
+    });
+
+    const waitForMinimumDuration = new Promise<void>((resolve) => {
+      window.setTimeout(resolve, minimumDuration);
+    });
+
+    const preloadImage = (assetPath: string, index: number) =>
+      new Promise<void>((resolve) => {
+        const image = new window.Image();
+        let isSettled = false;
+
+        const settle = () => {
+          if (isSettled) return;
+          isSettled = true;
+          image.onload = null;
+          image.onerror = null;
+          if (!isCancelled) {
+            setLoadedAssetCount((currentCount) => currentCount + 1);
+          }
+          resolve();
+        };
+
+        image.decoding = "async";
+        image.fetchPriority = index < PRELOAD_CONCURRENCY ? "high" : "auto";
+        image.onload = settle;
+        image.onerror = settle;
+        image.src = withBasePath(assetPath);
+
+        if (image.complete) settle();
+      });
+
+    const preloadAllAssets = async () => {
+      let nextAssetIndex = 0;
+      const workers = Array.from(
+        {
+          length: Math.min(PRELOAD_CONCURRENCY, preloadAssetPaths.length),
+        },
+        async () => {
+          while (nextAssetIndex < preloadAssetPaths.length) {
+            const assetIndex = nextAssetIndex;
+            nextAssetIndex += 1;
+            await preloadImage(preloadAssetPaths[assetIndex], assetIndex);
+          }
+        },
+      );
+
+      await Promise.all(workers);
     };
 
-    const sequenceTimer = window.setTimeout(() => {
-      isSequenceReady = true;
-      beginExit();
-    }, minimumDuration);
+    const preparePortfolio = async () => {
+      await Promise.all([
+        waitForPageLoad,
+        waitForMinimumDuration,
+        document.fonts?.ready ?? Promise.resolve(),
+        preloadAllAssets(),
+      ]);
 
-    if (!isPageReady) {
-      window.addEventListener("load", handlePageLoad, { once: true });
-    }
+      if (!isCancelled) beginExit();
+    };
+
+    void preparePortfolio();
 
     return () => {
-      window.removeEventListener("load", handlePageLoad);
-      window.clearTimeout(sequenceTimer);
+      isCancelled = true;
+
+      if (handlePageLoad) {
+        window.removeEventListener("load", handlePageLoad);
+      }
 
       if (exitTimer !== undefined) {
         window.clearTimeout(exitTimer);
@@ -441,9 +502,11 @@ const InitialPageLoader = () => {
 
   return (
     <div
-      role="status"
-      aria-live="polite"
+      role="progressbar"
       aria-label="Loading Kumar Aryan's portfolio"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={progress}
       className={`${styles.loader} ${phase === "exiting" ? styles.exiting : ""}`}
     >
       <div className={styles.ambientGlow} aria-hidden="true" />
@@ -479,7 +542,7 @@ const InitialPageLoader = () => {
 
         <span className={styles.logoShell}>
           <Image
-            src={withBasePath("/logos/aryan-logo-1.png")}
+            src={withBasePath("/logos/aryan-logo-1.webp")}
             alt=""
             width={112}
             height={112}
@@ -497,7 +560,7 @@ const InitialPageLoader = () => {
 
       <div className={styles.caption}>
         <span className={styles.captionDot} />
-        Compressing the stack
+        Loading portfolio · {progress}%
         <span className={styles.captionDot} />
       </div>
 
